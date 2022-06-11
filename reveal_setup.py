@@ -13,19 +13,19 @@ def install(dir):
     git = sp.Popen([f"git clone https://github.com/hakimel/reveal.js.git {dir}"], shell=True)
     git.wait()
 
-    # Remove unneccessary stuff
+    """Remove unneccessary stuff"""
     print(f":: Removing superfluous files...")
     
-    # Directories
+    """Directories"""
     for d in [".git", ".github", "test", "examples"]:
         shutil.rmtree(f"{dir}/{d}")
     
-    # Files
+    """Files"""
     for f in [".gitignore", ".npmignore", "LICENSE", "demo.html", "gulpfile.js",
     "package.json", "package-lock.json", "README.md"]:
         os.remove(f"{dir}/{f}")
     
-    # Copy sensible index.html
+    """Copy sensible index.html"""
     print(f":: Installing sensible index.html template...")
     os.remove(f"{dir}/index.html")
     shutil.copyfile("index.html", f"{dir}/index.html")
